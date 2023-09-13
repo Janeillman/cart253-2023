@@ -21,19 +21,15 @@ function preload() {
 */
 function setup() {
 
-    createCanvas(500, 500);
+createCanvas(500, 500);
+background(255, 0, 0);
 
-background(191, 255, 199);
+fill(134, 200, 190);
+rect(100, 300, 300, 50);
 
-fill(250, 200, 200);
-ellipse(250, 250, 200, 200);
-
-fill(0);
-ellipse(200, 250, 30, 30);
-ellips(300, 250, 30, 30);
-
-strokeWeight(10);
-line(200, 300, 300, 300);
+fill(159, 230, 50);
+ellipse(150, 200, 70, 70);
+ellipse(350, 200, 70, 70);
 
 }
 

@@ -36,6 +36,7 @@ function setup() {
     fill(159, 230, 50);
     ellipse(300, 300, 70, 70);
     ellipse(500, 300, 70, 70);
+
 }
 
 

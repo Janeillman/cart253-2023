@@ -34,6 +34,7 @@ function setup() {
 function draw() {
 
     background(backgroundShade);
+    // circleSize = circleSize + 1;
     ellipse(circleX, circleY, circleSize);
 
 

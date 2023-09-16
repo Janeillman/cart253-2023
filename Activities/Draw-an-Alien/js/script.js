@@ -52,7 +52,7 @@ function setup() {
     strokeWeight(3);
     stroke(0);
     line(250, 275, 350, 275);
-    
+       
 
 }
 

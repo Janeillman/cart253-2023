@@ -13,18 +13,24 @@
 */
 function preload() {
 
+
 }
-let backgroundShade = 0
-let circleSize;
-let circleX = 250
-let circleY = 250
+
+let backgroundShade = 0;
+let circle = {
+    x: 250,
+    y: 250,
+    size: 100,
+    speed: 1,
+    fill: 0
+ 
+}
+
 /**
  * Description of setup
 */
 function setup() {
-
-    createCanvas(windowWidth, windowHeight);
-    circleSize = 200
+    createCanvas(500,500);
 }
 
 
@@ -34,8 +40,15 @@ function setup() {
 function draw() {
 
     background(backgroundShade);
-    // circleSize = circleSize + 1;
-    ellipse(circleX, circleY, circleSize);
 
+    circle.x = circle.x + circle.speed;
+
+    circle.speed = random(-5,5);
+    circle.fill = random(0, 255);
+    circle.size = random(10, 100);
+    fill(circle.fill);
+    ellipse(circle.x,circle.y,circle.size);
+
+   
 
 }

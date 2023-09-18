@@ -18,9 +18,9 @@ function preload() {
 
 
 let bg = {
-    r: 0,
-    g: 255,
-    b: 0,
+    r: 230,
+    g: 150,
+    b: 200,
 };
 let circle = {
     x: 0,
@@ -37,6 +37,14 @@ let square = {
     fill: 0,
     alpha: 100,
 };
+let oval = {
+    x: 100,
+    y: 450,
+    wide: 200,
+    tall: 100,
+    fill: 180,
+    alpha: 100,
+}
 
 
 
@@ -60,17 +68,25 @@ function draw() {
 
     // CIRCLE
     ellipseMode(CENTER);
-    circle.x = circle.x + 1;
+    circle.x = circle.x + 3;
     circle.x = constrain(circle.x, 0, 400);
     fill(circle.fill, circle.alpha);
     ellipse(circle.x, circle.y, circle.size);
 
-    // RECT
+    // SQUARE
     rectMode(CENTER);
-    square.y = square.y + 1;
+    square.y = square.y + 2;
     square.y = constrain(square.y, 0, 450);
     fill(square.fill, square.alpha);
     rect(square.x, square.y, square.wide, square.tall);
+
+    // OVAL
+    ellipseMode(CENTER);
+    oval.y = oval.y + -1;
+    oval.y = constrain(oval.y, 50, 450);
+    fill(oval.fill, oval.alpha);
+    ellipse(oval.x, oval.y, oval.wide, oval.tall);
+
 
     
 

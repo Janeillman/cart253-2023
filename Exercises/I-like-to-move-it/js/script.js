@@ -30,7 +30,7 @@ let circle = {
     alpha: 200,
 };
 let square = {
-    x: 300,
+    x: 250,
     y: 0,
     wide: 100,
     tall: 100,
@@ -69,6 +69,7 @@ function draw() {
     // CIRCLE
     ellipseMode(CENTER);
     circle.x = circle.x + 3;
+    circle.fill = map(circle.x, 0, 400, 100, 255);
     circle.x = constrain(circle.x, 0, 400);
     fill(circle.fill, circle.alpha);
     ellipse(circle.x, circle.y, circle.size);
@@ -77,13 +78,16 @@ function draw() {
     rectMode(CENTER);
     square.y = square.y + 2;
     square.y = constrain(square.y, 0, 450);
+    square.wide = square.wide +1;
+    square.wide = constrain(square.wide, 100, 500);
     fill(square.fill, square.alpha);
     rect(square.x, square.y, square.wide, square.tall);
 
     // OVAL
     ellipseMode(CENTER);
     oval.y = oval.y + -1;
-    oval.y = constrain(oval.y, 50, 450);
+    oval.y = constrain(oval.y, 100, 400);
+    oval.tall = map(square.wide, 100, 500, 100, 200);
     fill(oval.fill, oval.alpha);
     ellipse(oval.x, oval.y, oval.wide, oval.tall);
 

@@ -25,7 +25,7 @@ let bg = {
 let circle = {
     x: 0,
     y: 100,
-    size: 200,
+    size: 50,
     fill: 255,
     alpha: 200,
     r:190,
@@ -55,7 +55,6 @@ let oval = {
     b:0,
 };
 let pyramid = {
-    fill: 0,
     r:255,
     g:100,
     b:100,
@@ -84,7 +83,9 @@ function draw() {
 
     // CIRCLE
     ellipseMode(CENTER);
-    circle.x = circle.x + 3;
+    circle.x = circle.x + 4;
+    circle.size = circle.size + 0.5;
+    circle.size = constrain(circle.size, 50, 200);
     circle.fill = map(circle.x, 0, 400, 100, 255);
     circle.x = constrain(circle.x, 0, 400);
     fill(circle.r, circle.g, circle.b);
@@ -105,15 +106,15 @@ function draw() {
     // OVAL
     ellipseMode(CENTER);
     oval.y = oval.y + -1;
-    oval.y = constrain(oval.y, 100, 400);
-    oval.tall = map(square.wide, 100, 400, 100, 200);
-    oval.tall = map(mouseX, 0, 500, 100, 200);
+    oval.y = constrain(oval.y, 100, 450);
+    oval.tall = map(mouseX, 0, 500, 30, 200);
+    oval.tall = constrain(oval.tall, 30, 200);
     oval.b = map(mouseX, 0, 500, 0, 255);
     fill(oval.r, oval.g, oval.b);
     ellipse(oval.x, oval.y, oval.wide, oval.tall);
 
     // TRIANGLE
-    pyramid.fill = pyramid.fill + 0.5;
+    pyramid.r = pyramid.r + -1;
     fill(pyramid.r, pyramid.g, pyramid.b);
     triangle(200, 300, 250, 200, 300, 300);
   

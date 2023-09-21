@@ -28,6 +28,9 @@ let circle = {
     size: 200,
     fill: 255,
     alpha: 200,
+    r:190,
+    g:230,
+    b:100,
 };
 let square = {
     x: 250,
@@ -36,6 +39,9 @@ let square = {
     tall: 100,
     fill: 200,
     alpha: 100,
+    r: 70,
+    g:200,
+    b:50,
 };
 let oval = {
     x: 100,
@@ -44,7 +50,16 @@ let oval = {
     tall: 100,
     fill: 180,
     alpha: 100,
+    r:100,
+    g:100,
+    b:0,
 };
+let pyramid = {
+    fill: 0,
+    r:255,
+    g:100,
+    b:100,
+}
 
 
 
@@ -72,17 +87,18 @@ function draw() {
     circle.x = circle.x + 3;
     circle.fill = map(circle.x, 0, 400, 100, 255);
     circle.x = constrain(circle.x, 0, 400);
-    fill(circle.fill, circle.alpha);
+    fill(circle.r, circle.g, circle.b);
     ellipse(circle.x, circle.y, circle.size);
 
     // SQUARE
     rectMode(CENTER);
     square.y = square.y + 2;
-    square.y = constrain(square.y, 0, 450);
+    square.y = constrain(square.y, 0, 400);
     square.wide = square.wide +1;
-    square.wide = constrain(square.wide, 100, 500);
-    square.fill = map(square.y, 0, 450, 100, 255);
-    fill(square.fill, square.alpha);
+    square.wide = constrain(square.wide, 100, 400);
+    square.g = map(square.y, 0, 450, 0, 200);
+    fill(square.r, square.g, square.b);
+    mouseY = constrain(mouseY, 50, 400);
     rect(square.x, square.y, mouseY, square.tall);
     
 
@@ -90,13 +106,20 @@ function draw() {
     ellipseMode(CENTER);
     oval.y = oval.y + -1;
     oval.y = constrain(oval.y, 100, 400);
-    oval.tall = map(square.wide, 100, 500, 100, 200);
-    fill(oval.fill, oval.alpha);
+    oval.tall = map(square.wide, 100, 400, 100, 200);
+    oval.tall = map(mouseX, 0, 500, 100, 200);
+    oval.b = map(mouseX, 0, 500, 0, 255);
+    fill(oval.r, oval.g, oval.b);
     ellipse(oval.x, oval.y, oval.wide, oval.tall);
 
+    // TRIANGLE
+    pyramid.fill = pyramid.fill + 0.5;
+    fill(pyramid.r, pyramid.g, pyramid.b);
+    triangle(200, 300, 250, 200, 300, 300);
+  
 
 
-    
+
 
     
 }

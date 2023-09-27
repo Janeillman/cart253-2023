@@ -15,17 +15,15 @@ function preload() {
 
 }
 
-
-
-
-
-let backgroundShade = 0;
-let circle = {
-  x: 0,
-  y: 250,
-  size: 100,
-  speed: 1
+let caterpillar = {
+    x: 100,
+    y: 250,
+    segmentSize: 100,
 }
+
+
+
+
 
 /**
  * Description of setup
@@ -40,21 +38,22 @@ function setup() {
 */
 
 function draw() {
-  background(backgroundShade);
 
-    circle.x = circle.x + circle.speed;
+    background(0);
+    noStroke();
+    fill(100, 200, 100);
 
- if (mouseX < width/3) {
-    fill(255, 0, 0);
- }
- 
- else if (mouseX < 2 * width/3) {
-    fill(0, 255, 0);
- }
+    let x = caterpillar.x;
+    let numSegments = 10;
+    let segmentsDrawn = 0;
 
- else{
-    fill(0, 0, 255);
- }
+    while (segmentsDrawn < numSegments) {
+        ellipse(x, caterpillar.y, caterpillar.segmentSize)
+        x = x + 50;
+        segmentsDrawn = segmentsDrawn + 1;
+    }
 
-    ellipse(circle.x,circle.y,circle.size);
-}
+    }
+
+   
+

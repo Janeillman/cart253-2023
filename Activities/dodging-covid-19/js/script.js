@@ -38,14 +38,14 @@ let user = {
     fill: 255,
 }
 
-
-
+let numStatic = 1000
 
 /**
  * Description of setup
 */
 function setup() {
 
+    noCursor();
     createCanvas(windowWidth, windowHeight);
 
      covid19.y = random(0, height);
@@ -62,7 +62,7 @@ function draw() {
 background(0);
 
 // display static
-for (let i = 0; i < 1000; i++) {
+for (let i = 0; i < numStatic; i++) {
 
 let x = random(0, width);
 let y = random(0, height);

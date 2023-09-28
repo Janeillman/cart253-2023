@@ -61,6 +61,16 @@ function draw() {
 
 background(0);
 
+// display static
+for (let i = 0; i < 1000; i++) {
+
+let x = random(0, width);
+let y = random(0, height);
+stroke(255);
+point(x,y);
+
+}
+
 // covid19 movement
 covid19.x = covid19.x + covid19.vx;
 covid19.y = covid19.y + covid19.vy;

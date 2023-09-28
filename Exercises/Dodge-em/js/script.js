@@ -104,12 +104,5 @@ if(d < cat.size/2 + mice.size/2) {
 
 
 
-
-
-
-
-
-
-
 }
 

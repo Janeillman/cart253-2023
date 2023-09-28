@@ -12,30 +12,29 @@
  * Description of preload
 */
 
+let cat = {
+    image: 0,
+    x: 100,
+    y: 300,
+    size: 75,
+    speed: 0,
+};
 
+let mice = {
+    image: 0,
+    x: 0,
+    y: 0,
+    size: 100,
+    speed: 0,
+};
 
 
 function preload() {
 
-    mouseFace = loadImage("assets/images/catFace.jpeg");
-    catFace = loadImage("assets/images/mouseFace.jpeg");
-
+    cat.image = loadImage("assets/images/catFace.jpeg");
+    mice.image = loadImage("assets/images/mouseFace.jpeg");
+    
 }
-
-let catFace = {
-    x: 100,
-    y: 0,
-    size: 100,
-    speed: 1,
-};
-
-let mouseFace = {
-    x: 400,
-    y: 0,
-    size: 75,
-    speed: 1,
-};
-
 
 /**
  * Description of setup
@@ -46,7 +45,6 @@ function setup() {
 
 }
 
-
 /**
  * Description of draw()
 */
@@ -55,8 +53,8 @@ function draw() {
 background(0);
 
 imageMode(CENTER);
-image(mouseFace, 200, 200);
-image(catFace, mouseX, mouseY, 100, 100);
+image(mice.image, mouseX, mouseY, mice.size, mice.size);
+image(cat.image, cat.x, cat.y, cat.size, cat.size);
 
 
 }

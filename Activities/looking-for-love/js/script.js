@@ -71,15 +71,15 @@ function draw() {
 
     } 
 
-    simulation();
-
 }
 
 function title() {
+    push();
     textSize(64);
     fill(200, 100, 100);
     textAlign(CENTER, CENTER);
     text(`LOVE?`, width/2, height/2);
+    pop();
 
 }
 
@@ -89,6 +89,15 @@ function simulation() {
     checkOverlap();
     display();
 } 
+
+function love() {
+    push();
+    textSize(64);
+    fill(255, 100, 100);
+    textAlign(CENTER, CENTER);
+    text(`LOVE!`, width/2, height/2);
+    pop();
+}
 
 function move() {
     // move the circles
@@ -110,7 +119,7 @@ function checkOverlap() {
     // check if circles touch
     let d = dist(circle1.x, circle1.y, circle2.x, circle2.y);
     if (d < circle1.size/2 + circle2.size/2) {
-        // love ending
+       state = `love`;
     }
 }
 
@@ -118,5 +127,11 @@ function display() {
         // display circles
         ellipse(circle1.x, circle1.y, circle1.size);
         ellipse(circle2.x, circle2.y, circle2.size);
+}
+
+function mousePressed() {
+    if (state === `title`) {
+        state = `simulation`;
+    }
 }
 

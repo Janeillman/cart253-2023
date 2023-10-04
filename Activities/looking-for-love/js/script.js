@@ -65,10 +65,10 @@ function draw() {
         simulation();
     }
     else if (state === `love`) {
-
+        love();
     }  
     else if (state === `sadness`) {
-
+        sadness();
     } 
 
 }
@@ -99,6 +99,15 @@ function love() {
     pop();
 }
 
+function sadness() {
+    push();
+    textSize(64);
+    fill(100, 100, 255);
+    textAlign(CENTER, CENTER);
+    text(`:(`, width/2, height/2);
+    pop();
+}
+
 function move() {
     // move the circles
     circle1.x = circle1.x + circle1.vx;
@@ -111,7 +120,7 @@ function move() {
 function checkOffScreen() {
     // check if circles go off screen
     if (circle1.x < 0|| circle1.x > width ||circle1.y < 0 || circle1.y > height || circle2.x < 0 ||circle2.x > width|| circle2.y < 0 || circle2.y > height) {
-        // sad ending
+        state = `sadness`
     }
 }
 

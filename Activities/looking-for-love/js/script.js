@@ -38,6 +38,7 @@ let circle2 = {
     speed: 3
 }; 
 
+let state = `title`; 
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -56,13 +57,38 @@ function setupCircles() {
 
 function draw() {
     background(0);
- 
-        move();
-        checkOffScreen();
-        checkOverlap();
-        display();
+
+    if (state === `title`) {
+        title();
+    }
+    else if (state === `simulation`) {
+        simulation();
+    }
+    else if (state === `love`) {
+
+    }  
+    else if (state === `sadness`) {
+
+    } 
+
+    simulation();
 
 }
+
+function title() {
+    textSize(64);
+    fill(200, 100, 100);
+    textAlign(CENTER, CENTER);
+    text(`LOVE?`, width/2, height/2);
+
+}
+
+function simulation() {
+    move();
+    checkOffScreen();
+    checkOverlap();
+    display();
+} 
 
 function move() {
     // move the circles

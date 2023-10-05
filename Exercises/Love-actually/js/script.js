@@ -15,7 +15,7 @@ function preload() {
 }
 
 
-
+// yellow circle
 let circle1 = {
     x: 150,
     y: 250, 
@@ -31,6 +31,7 @@ let circle1 = {
     }
 };
 
+// blue circle
 let circle2 = {
     x: 350,
     y: 250,
@@ -58,8 +59,8 @@ function setupCircles() {
 
     circle1.vx = random(-circle1.speed, circle1.speed);
     circle1.vy = random(-circle1.speed, circle1.speed);
-    circle2.vx = random(-circle2.speed, circle2.speed);
-    circle2.vy = random(-circle2.speed, circle2.speed);
+    circle2.vx = map(circle1.x, 0, windowWidth, 0, windowWidth); 
+    circle2.vy = map(circle1.y, 0, windowHeight, 0, windowHeight);
 }
 
 function draw() {
@@ -111,24 +112,42 @@ function sadness() {
     textSize(64);
     fill(100, 100, 255);
     textAlign(CENTER, CENTER);
-    text(`:(`, width/2, height/2);
+    text(`Love Lost ):`, width/2, height/2);
     pop();
 }
 
 function move() {
+
+     // move blue circle
+    circle2.x = circle2.x + circle2.vx;
+    circle2.y = circle2.y + circle2.vy;
+    
+
     // move yellow circle
     circle1.x = circle1.x + circle1.vx;
     circle1.y = circle1.y + circle1.vy;
+    console.log(circle2.x);
 
-    // move blue circle
-    circle2.x = circle2.x + circle2.vx;
-    circle2.y = circle2.y + circle2.vy;
+    if(keyIsDown(LEFT_ARROW)){
+        circle1.vx = circle1.vx - 1;
+    }
+    else if (keyIsDown(RIGHT_ARROW)) {
+        circle1.vx = circle1.vx + 1;
+    }
+    else if (keyIsDown(UP_ARROW)) {
+        circle1.vy = circle1.vy - 1;
+    }
+    else if (keyIsDown(DOWN_ARROW)) {
+        circle1.vy = circle1.vy + 1;
+    }
+    
+
 // use `map` to make blue circle follow yellow circle
 }
 
 function checkOffScreen() {
     // check if circles go off screen
-    if (circle1.x < 0|| circle1.x > width ||circle1.y < 0 || circle1.y > height || circle2.x < 0 ||circle2.x > width|| circle2.y < 0 || circle2.y > height) {
+    if (circle1.x < 0|| circle1.x > width ||circle1.y < 0 || circle1.y > height) {
         state = `sadness`
     }
 }
@@ -158,3 +177,4 @@ function mousePressed() {
         state = `simulation`;
     }
 }
+

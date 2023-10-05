@@ -18,12 +18,12 @@ function preload() {
 // yellow circle
 let circle1 = {
     x: 150,
-    y: 250, 
+    y: 500, 
     position: 0,
     size:100,
-    vx: 0,
-    vy: 0,
-    speed: 3,
+    vx: 6,
+    vy: 6,
+    speed: 1,
     fill: {
         r: 0,
         g: 0,
@@ -33,12 +33,12 @@ let circle1 = {
 
 // blue circle
 let circle2 = {
-    x: 350,
-    y: 250,
+    x: 800,
+    y: 150,
     size: 100,
-    vx: 0,
-    vy: 0, 
-    speed: 3,
+    vx: 1,
+    vy: 1, 
+    speed: 2,
     fill: {
         r: 247,
         g: 239,
@@ -54,17 +54,41 @@ function setup() {
 }
 
 function setupCircles() {
+
     circle1.x = circle1.x;
     circle2.x = circle2.x;
 
-    circle1.vx = random(-circle1.speed, circle1.speed);
-    circle1.vy = random(-circle1.speed, circle1.speed);
-    circle2.vx = map(circle1.x, 0, windowWidth, 0, windowWidth); 
-    circle2.vy = map(circle1.y, 0, windowHeight, 0, windowHeight);
 }
 
 function draw() {
     background(0);
+
+
+    let dx = circle2.x - circle1.x; // Distance between the circle and the mouse horizontally
+    let dy = circle2.y - circle1.y; // Distance between the circle and the mouse vertically
+  
+    if (dx < 0) { // If dx is negative, the mouse is to the right
+      // So move right
+      circle2.vx = circle2.speed;
+    }
+    else if (dx > 0) { // If dx is positive, the mouse is to the left
+      // So move left
+      circle2.vx = -circle2.speed;
+    }
+  
+    // Same again for the y axis
+    if (dy < 0) {
+      circle2.vy = circle2.speed;
+    }
+    else if (dy > 0) {
+      circle2.vy = -circle2.speed;
+    }
+  
+  
+    circle2.x = circle2.x + circle2.vx;
+    circle2.y = circle2.y + circle2.vy;
+  
+    // ellipse(circle2.x, circle2.y, circle2.size);
 
     if (state === `title`) {
         title();
@@ -86,7 +110,7 @@ function title() {
     textSize(64);
     fill(200, 100, 100);
     textAlign(CENTER, CENTER);
-    text(`LOVE?`, width/2, height/2);
+    text(`Love?`, width/2, height/2);
     pop();
 
 }
@@ -118,31 +142,19 @@ function sadness() {
 
 function move() {
 
-     // move blue circle
-    circle2.x = circle2.x + circle2.vx;
-    circle2.y = circle2.y + circle2.vy;
-    
-
     // move yellow circle
-    circle1.x = circle1.x + circle1.vx;
-    circle1.y = circle1.y + circle1.vy;
-    console.log(circle2.x);
-
     if(keyIsDown(LEFT_ARROW)){
-        circle1.vx = circle1.vx - 1;
+        circle1.x = circle1.x - circle1.vx;
     }
     else if (keyIsDown(RIGHT_ARROW)) {
-        circle1.vx = circle1.vx + 1;
+        circle1.x = circle1.x + circle1.vx;
     }
     else if (keyIsDown(UP_ARROW)) {
-        circle1.vy = circle1.vy - 1;
+        circle1.y = circle1.y - circle1.vy;
     }
     else if (keyIsDown(DOWN_ARROW)) {
-        circle1.vy = circle1.vy + 1;
+        circle1.y = circle1.y + circle1.vy;
     }
-    
-
-// use `map` to make blue circle follow yellow circle
 }
 
 function checkOffScreen() {

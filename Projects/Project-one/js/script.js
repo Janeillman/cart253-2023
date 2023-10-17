@@ -35,9 +35,9 @@ let asteroid = {
     speed: 12,
     size: 100,
     fill: {
-        r: 118,
-        g: 130,
-        b: 133,
+        r: 211,
+        g: 212,
+        b: 219,
     },
     spacing: {
       x: 500,
@@ -83,7 +83,7 @@ let titleString = "Start Game";
 let instructionString = 
 `Collect food and water for the astronaut,
       while avoiding the asteroids! 
-  You can move the astronaut with the arrow keys`;
+  You can move the astronaut with the arrow keys.`;
 let foodString = "FOOD";
 let waterString = "WATER";
 let endingString = "Game Over :(";
@@ -265,7 +265,7 @@ function displayAstronaut() {
 }
 
 function otherPlanets() {
-  fill(170, 100, 50);
+  fill(100, 108, 163);
   ellipse(700, 400, 120);
   ellipse(300, 50, 50);
   ellipse(900, 100, 75);

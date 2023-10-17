@@ -19,7 +19,6 @@ function preload() {
     astronautImage = loadImage("assets/images/astronaut.webp");
 }
 
-
 let astronaut = {
     x: 250,
     y: 250,
@@ -28,7 +27,6 @@ let astronaut = {
     speed: 5,
     size: 100
 }
-
 let asteroid = {
     x: 650,
     y: 650,
@@ -78,8 +76,6 @@ let foodBar = {
   speed: 0.2
 }
 
-
-
 let titleString = "Space";
 let endingString = "Game Over";
 let state = `title`; 
@@ -110,8 +106,6 @@ function draw() {
     runOut();
     waterRefill();
     foodRefill();
-
-   
 
   if (state === `title`) {
       fill(255);
@@ -170,7 +164,7 @@ function displayPlanets() {
   ellipse(planetFood.x, planetFood.y, planetFood.size);
 }
 
-function displayBars(){
+function displayBars() {
   fill(255);
   rect(20, 50, 200, 20);
   rect(20, 100, 200, 20);

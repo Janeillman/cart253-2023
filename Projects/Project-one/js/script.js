@@ -34,14 +34,14 @@ let asteroid = {
     y: 650,
     vx: 0,
     vy: 0,
-    speed: 7,
+    speed: 8,
     size: 100,
     fill: {
         r: 118,
         g: 130,
         b: 133,
     },
-    spacing: 400
+    spacing: 200
 }
 let planetWater = {
     x: 1100,
@@ -107,7 +107,10 @@ function draw() {
     displayStars();
     displayBars();
     displayAstronaut();
-    // checkSafety();
+    runOut();
+    waterRefill();
+    foodRefill();
+
    
 
   if (state === `title`) {
@@ -117,7 +120,7 @@ function draw() {
   else if (state === `animation`) { 
     useArrowKeys();
     displayAsteroids();
-    checkOverlap();
+    asteroidHit();
     }
     else if (state === `ending`) {
       fill(255, 0, 0);
@@ -125,20 +128,21 @@ function draw() {
     }
 }
 
-function checkOverlap() {
+function asteroidHit() {
     let d = dist(astronaut.x, astronaut.y, asteroid.x, asteroid.y);
-      if(d < asteroid.size/2 + astronaut.size/2) {
+      if(d < asteroid.size/3 + astronaut.size/3) {
       state = `ending`;
   }
 }
 
-// function checkWaterSafety() {
-//   let d = dist(astronaut.x, astronaut.y, planetWater.x, planetWater.y);
-//   if(d < planetWater.size/2 + astronaut.size/2) {
-//   // do not check do: function checkOverlap
-//   ;
-// }
-// }
+function runOut() {
+  if (waterBar.l < 1) {
+    state = `ending`;
+  }
+  else if (foodBar.l < 1) {
+    state = `ending`;
+  }
+}
 
 function keyPressed() {
   if (state === `title`) {
@@ -153,28 +157,6 @@ function displayStars() {
     let y = random(0, height);
     ellipse(x, y, 1.5, 1.5);
     }
-}
-
-function displayAsteroids() {
-
-asteroid.vx = asteroid.speed;
-
-  let x = asteroid.x;
-  let y = asteroid.y;
-    for (let i = 0; i< 5; i++ ) {
-    ellipse(x, y, asteroid.size);
-    x = x + asteroid.spacing;
-    y = y + asteroid.spacing;
-    fill(asteroid.fill.r, asteroid.fill.g, asteroid.fill.b);
-    }
-    asteroid.x = asteroid.x + asteroid.vx;
-    asteroid.y = asteroid.y + asteroid.vy;
-    
-    if (asteroid.x > width) {
-        asteroid.x = 0;
-        asteroid.y = random(0, height);
-    }
-
 }
 
 function displayPlanets() {
@@ -193,13 +175,50 @@ function displayBars(){
   rect(20, 50, 200, 20);
   rect(20, 100, 200, 20);
   
-  fill(20, 40, 200);
+  fill(3, 150, 250);
   rect(waterBar.x, waterBar.y, waterBar.l, waterBar.h);
   waterBar.l = waterBar.l - waterBar.speed;
  
-  // fill(50, 100, 250);
-  // rect(20, 100, 200, 20);
+  fill(18, 160, 8);
+  rect(foodBar.x, foodBar.y, foodBar.l, foodBar.h);
+  foodBar.l = foodBar.l - foodBar.speed;
+ 
 }
+
+function waterRefill() {
+  let d = dist(astronaut.x, astronaut.y, planetWater.x, planetWater.y);
+  if(d < planetWater.size/2 + astronaut.size/2) {
+      waterBar.l = 200;
+  }
+}
+
+function foodRefill() {
+let d = dist(astronaut.x, astronaut.y, planetFood.x, planetFood.y);
+  if(d < planetFood.size/2 + astronaut.size/2) {
+      foodBar.l = 200;
+  }
+}
+
+function displayAsteroids() {
+
+  asteroid.vx = asteroid.speed;
+  
+    let x = asteroid.x;
+    let y = asteroid.y;
+  for (let i = 0; i< 5; i++ ) {
+      fill(asteroid.fill.r, asteroid.fill.g, asteroid.fill.b);
+      ellipse(x, y, asteroid.size);
+      x = x + asteroid.spacing;
+      y = y + asteroid.spacing;
+    }
+      asteroid.x = asteroid.x + asteroid.vx;
+      asteroid.y = asteroid.y + asteroid.vy;
+      
+    if (asteroid.x > width) {
+          asteroid.x = 0;
+          asteroid.y = random(0, height);
+      }
+  }
 
 function useArrowKeys() {
   if (keyIsDown(LEFT_ARROW)) {

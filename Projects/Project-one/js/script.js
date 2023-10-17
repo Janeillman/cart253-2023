@@ -24,7 +24,7 @@ let astronaut = {
     y: 50,
     vx: 0,
     vy: 0,
-    speed: 5,
+    speed: 7,
     size: 100
 }
 let asteroid = {
@@ -32,7 +32,7 @@ let asteroid = {
     y: 650,
     vx: 0,
     vy: 0,
-    speed: 10,
+    speed: 12,
     size: 100,
     fill: {
         r: 118,
@@ -69,7 +69,7 @@ let waterBar = {
   y: 50,
   h: 20,
   l: 200,
-  speed: 0.3
+  speed: 0.4
 }
 let foodBar = {
   x: 20,
@@ -81,9 +81,11 @@ let foodBar = {
 
 let titleString = "Start Game";
 let instructionString = 
-`Don't let the astronaut run out of food and water, 
+`Collect food and water for the astronaut,
       while avoiding the asteroids! 
-  You can move the astronaut with the arrow keys`
+  You can move the astronaut with the arrow keys`;
+let foodString = "FOOD";
+let waterString = "WATER";
 let endingString = "Game Over :(";
 let state = `title`; 
 // possible states are `title`, `animation`, `ending`
@@ -109,6 +111,7 @@ function draw() {
     background(0);
     displayPlanets();
     displayStars();
+    otherPlanets();
     displayAstronaut();
     runOut();
     waterRefill();
@@ -154,7 +157,7 @@ function runOut() {
   }
 }
 
-function keyPressed() {
+function mousePressed() {
   if (state === `title`) {
       state = `animation`;
     }
@@ -173,13 +176,17 @@ function displayPlanets() {
 // planet Water
   fill(planetWater.fill.r, planetWater.fill.g, planetWater.fill.b);
   ellipse(planetWater.x, planetWater.y, planetWater.size);
+  text(waterString, planetWater.x, planetWater.y);
 
 // planet Food
   fill(planetFood.fill.r, planetFood.fill.g, planetFood.fill.b);
   ellipse(planetFood.x, planetFood.y, planetFood.size);
+  text(foodString, planetFood.x, planetFood.y);
 }
 
 function displayBars() {
+  rectMode(CORNER);
+
   fill(255);
   rect(20, 50, 200, 20);
   rect(20, 100, 200, 20);
@@ -255,6 +262,17 @@ function useArrowKeys() {
 
 function displayAstronaut() {
     image(astronautImage, astronaut.x, astronaut.y, astronaut.size, astronaut.size);
+}
+
+function otherPlanets() {
+  fill(170, 100, 50);
+  ellipse(700, 400, 120);
+  ellipse(300, 50, 50);
+  ellipse(900, 100, 75);
+  ellipse(1000, 600, 170);
+  ellipse(100, 300, 110);
+  ellipse(500, 550, 60);
+  ellipse(1150, 400, 30);
 }
 
 

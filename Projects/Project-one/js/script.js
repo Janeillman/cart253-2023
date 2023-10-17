@@ -39,7 +39,10 @@ let asteroid = {
         g: 130,
         b: 133,
     },
-    spacing: 200
+    spacing: {
+      x: 700,
+      y: 100
+    }
 }
 let planetWater = {
     x: 1100,
@@ -124,7 +127,7 @@ function draw() {
 
 function asteroidHit() {
     let d = dist(astronaut.x, astronaut.y, asteroid.x, asteroid.y);
-      if(d < asteroid.size/3 + astronaut.size/3) {
+      if(d < asteroid.size/2 + astronaut.size/2) {
       state = `ending`;
   }
 }
@@ -202,8 +205,8 @@ function displayAsteroids() {
   for (let i = 0; i< 5; i++ ) {
       fill(asteroid.fill.r, asteroid.fill.g, asteroid.fill.b);
       ellipse(x, y, asteroid.size);
-      x = x + asteroid.spacing;
-      y = y + asteroid.spacing;
+      x = x + asteroid.spacing.x;
+      y = y + asteroid.spacing.y;
     }
       asteroid.x = asteroid.x + asteroid.vx;
       asteroid.y = asteroid.y + asteroid.vy;

@@ -20,8 +20,8 @@ function preload() {
 }
 
 let astronaut = {
-    x: 300,
-    y: 100,
+    x: 600,
+    y: 50,
     vx: 0,
     vy: 0,
     speed: 5,
@@ -79,8 +79,12 @@ let foodBar = {
   speed: 0.3
 }
 
-let titleString = "Start Game: Don't let the astronaut run out of food and water!";
-let endingString = "Game Over";
+let titleString = "Start Game";
+let instructionString = 
+`Don't let the astronaut run out of food and water, 
+      while avoiding the asteroids! 
+  You can move the astronaut with the arrow keys`
+let endingString = "Game Over :(";
 let state = `title`; 
 // possible states are `title`, `animation`, `ending`
 
@@ -92,8 +96,9 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
 
   // Text settings
-  textSize(32);
+  textSize(30);
   textAlign(CENTER, CENTER);
+  
 }
 
 /**
@@ -110,8 +115,13 @@ function draw() {
     foodRefill();
 
   if (state === `title`) {
-      fill(255);
-      text(titleString, width / 2, height / 2);
+      fill(200, 50, 50);
+      rectMode(CENTER);
+      rect(width/2, height/2, 200, 50);
+    fill(255);
+    text(titleString, width / 2, height / 2);
+    text(instructionString, width / 2, height/ 3);
+      
     }
   else if (state === `animation`) { 
     displayBars();
@@ -120,6 +130,9 @@ function draw() {
     asteroidHit();
     }
     else if (state === `ending`) {
+      fill(250, 200, 200);
+      rectMode(CENTER);
+      rect(width/2, height/2, 200, 50);
       fill(255, 0, 0);
       text(endingString, width / 2, height / 2)
     }
@@ -160,7 +173,6 @@ function displayPlanets() {
 // planet Water
   fill(planetWater.fill.r, planetWater.fill.g, planetWater.fill.b);
   ellipse(planetWater.x, planetWater.y, planetWater.size);
- 
 
 // planet Food
   fill(planetFood.fill.r, planetFood.fill.g, planetFood.fill.b);

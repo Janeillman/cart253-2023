@@ -20,8 +20,8 @@ function preload() {
 }
 
 let astronaut = {
-    x: 250,
-    y: 250,
+    x: 300,
+    y: 100,
     vx: 0,
     vy: 0,
     speed: 5,
@@ -32,7 +32,7 @@ let asteroid = {
     y: 650,
     vx: 0,
     vy: 0,
-    speed: 8,
+    speed: 10,
     size: 100,
     fill: {
         r: 118,
@@ -40,8 +40,8 @@ let asteroid = {
         b: 133,
     },
     spacing: {
-      x: 700,
-      y: 100
+      x: 500,
+      y: 500
     }
 }
 let planetWater = {
@@ -69,17 +69,17 @@ let waterBar = {
   y: 50,
   h: 20,
   l: 200,
-  speed: 0.2
+  speed: 0.3
 }
 let foodBar = {
   x: 20,
   y:100,
   h: 20,
   l: 200,
-  speed: 0.2
+  speed: 0.3
 }
 
-let titleString = "Space";
+let titleString = "Start Game: Don't let the astronaut run out of food and water!";
 let endingString = "Game Over";
 let state = `title`; 
 // possible states are `title`, `animation`, `ending`
@@ -104,7 +104,6 @@ function draw() {
     background(0);
     displayPlanets();
     displayStars();
-    displayBars();
     displayAstronaut();
     runOut();
     waterRefill();
@@ -115,6 +114,7 @@ function draw() {
       text(titleString, width / 2, height / 2);
     }
   else if (state === `animation`) { 
+    displayBars();
     useArrowKeys();
     displayAsteroids();
     asteroidHit();

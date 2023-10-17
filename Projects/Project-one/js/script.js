@@ -62,8 +62,23 @@ let planetFood = {
       g: 160,
       b: 8
     }
-
 }
+let waterBar = {
+  x: 20,
+  y: 50,
+  h: 20,
+  l: 200,
+  speed: 0.2
+}
+let foodBar = {
+  x: 20,
+  y:100,
+  h: 20,
+  l: 200,
+  speed: 0.2
+}
+
+
 
 let titleString = "Space";
 let endingString = "Game Over";
@@ -174,10 +189,16 @@ function displayPlanets() {
 }
 
 function displayBars(){
-  fill(20, 40, 200);
+  fill(255);
   rect(20, 50, 200, 20);
-  fill(50, 100, 250);
   rect(20, 100, 200, 20);
+  
+  fill(20, 40, 200);
+  rect(waterBar.x, waterBar.y, waterBar.l, waterBar.h);
+  waterBar.l = waterBar.l - waterBar.speed;
+ 
+  // fill(50, 100, 250);
+  // rect(20, 100, 200, 20);
 }
 
 function useArrowKeys() {

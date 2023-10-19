@@ -1,16 +1,19 @@
 /**
-Title of Project
-Author Name
+Space Game
+By: Jane Illman
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+This is a game where the player controls an astronaut with the keyboard's arrow keys. 
+To start the game, click on the "Start Game" button on the title page.
+The astronaut must touch both the blue and green planets before the water and food supply bars run out.
+if the astronaut gets hit by an asteroid, or one of the supply bars runs out, the game ends.
+Refresh to play again.
 */
 
 "use strict";
 
 
 /**
-Description of preload
+Loading image of astronaut
 */
 
 let astronautImage;
@@ -18,7 +21,7 @@ let astronautImage;
 function preload() {
     astronautImage = loadImage("assets/images/astronaut.webp");
 }
-
+// Variables: Astronaut, Asteroid, Water planet, Food planet, Water supply bar, Food suply bar.
 let astronaut = {
     x: 600,
     y: 50,
@@ -79,6 +82,7 @@ let foodBar = {
   speed: 0.3
 }
 
+// Displaying words
 let titleString = "Start Game";
 let instructionString = 
 `Collect food and water for the astronaut,
@@ -92,19 +96,16 @@ let state = `title`;
 
 
 /**
-Description of setup
+Setup: creating the canvas and the text settings
 */
 function setup() {
-    createCanvas(windowWidth, windowHeight);
-
-  // Text settings
-  textSize(30);
-  textAlign(CENTER, CENTER);
-  
+  createCanvas(windowWidth, windowHeight);
+    textSize(30);
+    textAlign(CENTER, CENTER);
 }
 
 /**
-Description of draw()
+Draw: Displaying functions in the right states of the program.
 */
 function draw() {
 
@@ -124,7 +125,6 @@ function draw() {
     fill(255);
     text(titleString, width / 2, height / 2);
     text(instructionString, width / 2, height/ 3);
-      
     }
   else if (state === `animation`) { 
     displayBars();
@@ -140,14 +140,14 @@ function draw() {
       text(endingString, width / 2, height / 2)
     }
 }
-
+// if an astroid touches the astronaut
 function asteroidHit() {
     let d = dist(astronaut.x, astronaut.y, asteroid.x, asteroid.y);
       if(d < asteroid.size/2 + astronaut.size/2) {
       state = `ending`;
-  }
+      }
 }
-
+// if one of the supply bars runs out
 function runOut() {
   if (waterBar.l < 1) {
     state = `ending`;
@@ -156,13 +156,13 @@ function runOut() {
     state = `ending`;
   }
 }
-
+// To start the game by clicking "Start Game"
 function mousePressed() {
   if (state === `title`) {
       state = `animation`;
     }
   }
-
+// Use loop to make starry backgroud
 function displayStars() {
   stroke(255);
     for (let i = 0; i < 100; i++) {
@@ -171,7 +171,7 @@ function displayStars() {
     ellipse(x, y, 1.5, 1.5);
     }
 }
-
+// Displaying food and water planets
 function displayPlanets() {
 // planet Water
   fill(planetWater.fill.r, planetWater.fill.g, planetWater.fill.b);
@@ -183,7 +183,7 @@ function displayPlanets() {
   ellipse(planetFood.x, planetFood.y, planetFood.size);
   text(foodString, planetFood.x, planetFood.y);
 }
-
+// Display supply bars; Make them decrease whenever astronaut is not touching the planet
 function displayBars() {
   rectMode(CORNER);
 
@@ -200,21 +200,21 @@ function displayBars() {
   foodBar.l = foodBar.l - foodBar.speed;
  
 }
-
+// Water bar returns to full when astronaut touches water planet
 function waterRefill() {
   let d = dist(astronaut.x, astronaut.y, planetWater.x, planetWater.y);
   if(d < planetWater.size/2 + astronaut.size/2) {
       waterBar.l = 200;
   }
 }
-
+// Food bar returns to full when astronaut touches food planet
 function foodRefill() {
 let d = dist(astronaut.x, astronaut.y, planetFood.x, planetFood.y);
   if(d < planetFood.size/2 + astronaut.size/2) {
       foodBar.l = 200;
   }
 }
-
+// Using loop to display asteroids coming in from the left side at random y-values
 function displayAsteroids() {
 
   asteroid.vx = asteroid.speed;
@@ -235,7 +235,7 @@ function displayAsteroids() {
           asteroid.y = random(0, height);
       }
   }
-
+// Allow the user to control the astronaut (in 4 directions) with the arrow keys
 function useArrowKeys() {
   if (keyIsDown(LEFT_ARROW)) {
     astronaut.vx = -astronaut.speed;
@@ -259,11 +259,11 @@ function useArrowKeys() {
   astronaut.x = astronaut.x + astronaut.vx;
   astronaut.y = astronaut.y + astronaut.vy;
 }
-
+// Display astronaut image
 function displayAstronaut() {
     image(astronautImage, astronaut.x, astronaut.y, astronaut.size, astronaut.size);
 }
-
+// Display background planets for decoration
 function otherPlanets() {
   fill(100, 108, 163);
   ellipse(700, 400, 120);

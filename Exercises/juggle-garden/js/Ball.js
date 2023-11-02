@@ -10,6 +10,12 @@ class Ball {
       this.maxSpeed = 10;
       this.size = 40;
       this.active = true;
+      this.fill = {
+        r: 50,
+        g: 50,
+        b: 100
+      };
+      this.saved = 170;
     }
   
     gravity(force) {
@@ -43,12 +49,14 @@ class Ball {
   
         this.vy = -this.vy;
         this.ay = 0;
+        this.fill.g = this.fill.g + 20;
+
       }
     }
   
     display() {
       push();
-      fill(210, 100, 50);
+      fill(this.fill.r, this.fill.g, this.fill.b);
       stroke(0);
       ellipse(this.x,this.y,this.size);
       pop();

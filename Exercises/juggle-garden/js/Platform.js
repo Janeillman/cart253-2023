@@ -31,6 +31,7 @@ class Platform {
     
           this.vy = -this.vy;
           this.ay = 0;
+          this.fill.g = this.fill.g + 20;
         }
       }
     

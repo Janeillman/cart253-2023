@@ -7,7 +7,7 @@ class Platform {
       this.y = 200;
       this.vx = 0;
       this.vy = 0;
-      this.speed = 3;
+      this.speed = 10;
     }
   
     move(platform) {
@@ -37,7 +37,7 @@ class Platform {
   
     display() {
       push();
-      fill(255);
+      fill(200, 100, 200);
       noStroke();
       rectMode(CENTER);
       rect(this.x,this.y,this.width,this.height);

@@ -11,7 +11,7 @@ let numBalls = 10;
 function setup() {
   createCanvas(windowWidth,windowHeight);
 
-  paddle = new Paddle(300, 20);
+  paddle = new Paddle(300, 40);
   platform = new Platform(200, 30);
 
   for (let i = 0; i < numBalls; i++) {

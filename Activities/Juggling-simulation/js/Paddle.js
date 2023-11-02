@@ -1,23 +1,23 @@
- class Paddle {
+class Paddle {
 
-    constructor(w, h) {
-        this.width = w;
-        this.height = h;
-        this.x = 0;
-        this.y = height - this.height/2;
+    constructor(w,h) {
+      this.width = w;
+      this.height = h;
+      this.x = 0;
+      this.y = height - this.height/2;
     }
-
+  
     move() {
-        this.x = mouseX
+      this.x = mouseX;
     }
-
+  
     display() {
-        push();
-        fill(255);
-        noStroke();
-        rectMode(CENTER);
-        rect(this.x, this.y, this.width, this.height);
-        pop();
+      push();
+      fill(255);
+      noStroke();
+      rectMode(CENTER);
+      rect(this.x,this.y,this.width,this.height);
+      pop();
     }
-    
- }
+  
+  }

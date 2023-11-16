@@ -1,9 +1,7 @@
 
 "use strict";
 
-
 function preload() {
-
 }
 
 // The Balls
@@ -12,6 +10,8 @@ let balls = [];
 // Just creates canvas
 function setup() {
     createCanvas(600,600);
+
+    userStartAudio();
 }
 
 
@@ -25,3 +25,13 @@ function draw() {
         ball.display();
     }
 }
+
+function mousePressed() {
+    createBall(mouseX, mouseY);
+}
+
+function createBall(x, y) {
+        let ball = new Ball(x, y);
+        balls.push(ball);
+}
+

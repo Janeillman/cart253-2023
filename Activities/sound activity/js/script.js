@@ -1,32 +1,27 @@
-/**
- * Title of Project
- * Author Name
- * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
- */
 
 "use strict";
 
-/**
- * Description of preload
-*/
+
 function preload() {
 
 }
 
+// The Balls
+let balls = [];
 
-/**
- * Description of setup
-*/
+// Just creates canvas
 function setup() {
-
+    createCanvas(600,600);
 }
 
 
-/**
- * Description of draw()
-*/
 function draw() {
+    background(0);
 
+    for (let i = 0; i < balls.length; i++) {
+        let ball = balls[i];
+        ball.move();
+        ball.bounce();
+        ball.display();
+    }
 }

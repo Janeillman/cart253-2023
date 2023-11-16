@@ -1,6 +1,6 @@
 class Ball {
 
-    constructor(x, y) {
+    constructor(x, y, note) {
         this.x = x;
         this.y = y;
         this.size = 50;
@@ -17,7 +17,7 @@ class Ball {
         this.oscillator = new p5.Oscillator();
         this.nearFreq = 220;
         this.farFreq = 440;
-        this.oscillator.amp(0.1);
+        this.oscillator.amp(0.25);
         this.oscillator.start();
 
         // Synth
@@ -49,7 +49,7 @@ class Ball {
     }
 
     playNote() {
-        this.synth.play(this.note, 0.2, 0, 0.1);
+        this.synth.play(this.note, 0.4, 0, 0.1);
     }
 
     display() {

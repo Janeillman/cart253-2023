@@ -7,6 +7,9 @@ function preload() {
 // The Balls
 let balls = [];
 
+// F-minor
+let notes = [`F3`,`G3`,`Ab4`, `Bb4`,`C4`,`Db4`,`Eb4`,`F4`];
+
 // Just creates canvas
 function setup() {
     createCanvas(600,600);
@@ -31,7 +34,8 @@ function mousePressed() {
 }
 
 function createBall(x, y) {
-        let ball = new Ball(x, y);
+        let note = random(notes);
+        let ball = new Ball(x, y, note);
         balls.push(ball);
 }
 

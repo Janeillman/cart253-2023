@@ -20,13 +20,21 @@ move() {
 }
 
 bounce() {
-    if (this.x < 0 || this.x > width) {
+    if (this.x - this.size/2 < 0 || this.x + this.size/2 > width) {
         this.vx = -this.vx;
     }
     
-    if (this.y < 0 || this.y > height) {
+    if (this.y - this.size/2 < 0 || this.y + this.size/2 > height) {
         this.vy = -this.vy;
     }
+}
+
+display() {
+    push();
+    nostroke();
+    fill(this.fill.r, this.fill.g, this.fill.b);
+    ellipse(this.x, this.y, this.size);
+    pop();
 }
 
 }

@@ -16,23 +16,8 @@ function preload() {
 
 let astronaut;
 
-let asteroid = {
-    x: 650,
-    y: 650,
-    vx: 0,
-    vy: 0,
-    speed: 12,
-    size: 100,
-    fill: {
-        r: 211,
-        g: 212,
-        b: 219,
-    },
-    spacing: {
-      x: 500,
-      y: 500
-    }
-}
+let asteroids = [];
+
 let planetWater = {
     x: 1100,
     y: 150,
@@ -116,10 +101,7 @@ function draw() {
     text(instructionString, width / 2, height/ 3);
     }
   else if (state === `animation`) { 
-    displayBars();
-    useArrowKeys();
-    displayAsteroids();
-    asteroidHit();
+      astronaut.move();
     }
     else if (state === `ending`) {
       fill(250, 200, 200);
@@ -224,30 +206,7 @@ function displayAsteroids() {
           asteroid.y = random(0, height);
       }
   }
-// Allow the user to control the astronaut (in 4 directions) with the arrow keys
-function useArrowKeys() {
-  if (keyIsDown(LEFT_ARROW)) {
-    astronaut.vx = -astronaut.speed;
-  }
-  else if (keyIsDown(RIGHT_ARROW)) {
-    astronaut.vx = astronaut.speed;
-  }
-  else {
-    astronaut.vx = 0;
-  }
-  if (keyIsDown(UP_ARROW)) {
-    astronaut.vy = -astronaut.speed;
-  }
-  else if (keyIsDown(DOWN_ARROW)) {
-    astronaut.vy = astronaut.speed;
-  }
-  else {
-    astronaut.vy = 0;
-  }
 
-  astronaut.x = astronaut.x + astronaut.vx;
-  astronaut.y = astronaut.y + astronaut.vy;
-}
 // Display astronaut image
 function displayAstronaut() {
     image(astronautImage, astronaut.x, astronaut.y, astronaut.size, astronaut.size);

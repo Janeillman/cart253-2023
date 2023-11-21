@@ -18,4 +18,12 @@ class Asteroid {
         };
     }
 
+    move() {
+
+    }
+
+    display() {
+        
+    }
+
 }

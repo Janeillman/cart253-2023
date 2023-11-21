@@ -1,13 +1,4 @@
-/**
-Space Game
-By: Jane Illman
-
-This is a game where the player controls an astronaut with the keyboard's arrow keys. 
-To start the game, click on the "Start Game" button on the title page.
-The astronaut must touch both the blue and green planets before the water and food supply bars run out.
-if the astronaut gets hit by an asteroid, or one of the supply bars runs out, the game ends.
-Refresh to play again.
-*/
+//Description
 
 "use strict";
 
@@ -22,14 +13,9 @@ function preload() {
     astronautImage = loadImage("assets/images/astronaut.webp");
 }
 // Variables: Astronaut, Asteroid, Water planet, Food planet, Water supply bar, Food suply bar.
-let astronaut = {
-    x: 600,
-    y: 50,
-    vx: 0,
-    vy: 0,
-    speed: 7,
-    size: 100
-}
+
+let astronaut;
+
 let asteroid = {
     x: 650,
     y: 650,
@@ -102,6 +88,9 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
     textSize(30);
     textAlign(CENTER, CENTER);
+
+  paddle = new Astronaut(300, 40);
+
 }
 
 /**

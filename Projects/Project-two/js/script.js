@@ -80,19 +80,20 @@ function setup() {
 
   astronaut = new Astronaut(300, 40);
   planets = new Planet(100, 100);
+  asteroids = new Asteroid(200,300);
 
   for (let i = 0; i < numAsteroids; i++) {
     let x = random(0,width);
     let y = random(-400,-100);
     let asteroids = new Asteroid(x,y);
-    asteroids.push(asteroid);
+    asteroids.push(asteroids);
   }
 
   for (let i = 0; i < numPlanets; i++) {
     let x = random(0,width);
     let y = random(0,height);
     let planets = new Planet(x,y);
-    planets.push(planet);
+    planets.push(planets);
   }
 
 }
@@ -111,9 +112,10 @@ function draw() {
 
   astronaut.display();
 
+
   for (let i = 0; i < planets.length; i++) {
     let planets = planets[i];
-    planet.display();
+    planets.display();
   }
 
   if (state === `title`) {
@@ -126,7 +128,8 @@ function draw() {
     }
   else if (state === `animation`) { 
       astronaut.move();
-
+      asteroid.display();
+      asteroid.move();
     }
     else if (state === `ending`) {
       fill(250, 200, 200);
@@ -209,43 +212,6 @@ let d = dist(astronaut.x, astronaut.y, planetFood.x, planetFood.y);
   if(d < planetFood.size/2 + astronaut.size/2) {
       foodBar.l = 200;
   }
-}
-// Using loop to display asteroids coming in from the left side at random y-values
-function displayAsteroids() {
-
-  asteroid.vx = asteroid.speed;
-  
-    let x = asteroid.x;
-    let y = asteroid.y;
-  for (let i = 0; i< 5; i++ ) {
-      fill(asteroid.fill.r, asteroid.fill.g, asteroid.fill.b);
-      ellipse(x, y, asteroid.size);
-      x = x + asteroid.spacing.x;
-      y = y + asteroid.spacing.y;
-    }
-      asteroid.x = asteroid.x + asteroid.vx;
-      asteroid.y = asteroid.y + asteroid.vy;
-      
-    if (asteroid.x > width) {
-          asteroid.x = 0;
-          asteroid.y = random(0, height);
-      }
-  }
-
-// Display astronaut image
-function displayAstronaut() {
-    image(astronautImage, astronaut.x, astronaut.y, astronaut.size, astronaut.size);
-}
-// Display background planets for decoration
-function otherPlanets() {
-  fill(100, 108, 163);
-  ellipse(700, 400, 120);
-  ellipse(300, 50, 50);
-  ellipse(900, 100, 75);
-  ellipse(1000, 600, 170);
-  ellipse(100, 300, 110);
-  ellipse(500, 550, 60);
-  ellipse(1150, 400, 30);
 }
 
 

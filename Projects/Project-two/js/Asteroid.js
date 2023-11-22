@@ -19,11 +19,20 @@ class Asteroid {
     }
 
     move() {
-
+        this.vx = this.speed;
+      
+          this.x = this.x + this.vx;
+          this.y = this.y + this.vy;
+          
+        if (this.x > width) {
+              this.x = 0;
+              this.y = random(0, height);
+          }
     }
 
     display() {
-        
+        fill(this.fill.r, this.fill.g, this.fill.b);
+        ellipse(this.x, this.y, this.size);
     }
 
 }

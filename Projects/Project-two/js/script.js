@@ -17,6 +17,10 @@ function preload() {
 let astronaut;
 
 let asteroids = [];
+let numAsteroids = 3;
+
+let planets = [];
+let numPlanets = 7;
 
 let planetWater = {
     x: 1100,
@@ -74,7 +78,22 @@ function setup() {
     textSize(30);
     textAlign(CENTER, CENTER);
 
-  paddle = new Astronaut(300, 40);
+  astronaut = new Astronaut(300, 40);
+  planets = new Planet(100, 100);
+
+  for (let i = 0; i < numAsteroids; i++) {
+    let x = random(0,width);
+    let y = random(-400,-100);
+    let asteroids = new Asteroid(x,y);
+    asteroids.push(asteroid);
+  }
+
+  for (let i = 0; i < numPlanets; i++) {
+    let x = random(0,width);
+    let y = random(0,height);
+    let planets = new Planet(x,y);
+    planets.push(planet);
+  }
 
 }
 
@@ -83,14 +102,19 @@ Draw: Displaying functions in the right states of the program.
 */
 function draw() {
 
-    background(0);
-    displayPlanets();
-    displayStars();
-    otherPlanets();
-    displayAstronaut();
-    runOut();
-    waterRefill();
-    foodRefill();
+  background(0);
+
+  runOut();
+  waterRefill();
+  foodRefill();
+  displayStars();
+
+  astronaut.display();
+
+  for (let i = 0; i < planets.length; i++) {
+    let planets = planets[i];
+    planet.display();
+  }
 
   if (state === `title`) {
       fill(200, 50, 50);
@@ -102,6 +126,7 @@ function draw() {
     }
   else if (state === `animation`) { 
       astronaut.move();
+
     }
     else if (state === `ending`) {
       fill(250, 200, 200);

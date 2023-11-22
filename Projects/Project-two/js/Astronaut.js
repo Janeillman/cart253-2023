@@ -10,29 +10,29 @@ class Astronaut {
 
     move() {
         if (keyIsDown(LEFT_ARROW)) {
-            astronaut.vx = -astronaut.speed;
+            this.vx = -this.speed;
           }
           else if (keyIsDown(RIGHT_ARROW)) {
-            astronaut.vx = astronaut.speed;
+            this.vx = this.speed;
           }
           else {
-            astronaut.vx = 0;
+            this.vx = 0;
           }
           if (keyIsDown(UP_ARROW)) {
-            astronaut.vy = -astronaut.speed;
+            this.vy = -this.speed;
           }
           else if (keyIsDown(DOWN_ARROW)) {
-            astronaut.vy = astronaut.speed;
+            this.vy = this.speed;
           }
           else {
-            astronaut.vy = 0;
+            this.vy = 0;
           }
         
-          astronaut.x = astronaut.x + astronaut.vx;
-          astronaut.y = astronaut.y + astronaut.vy;
+          this.x = this.x + this.vx;
+          this.y = this.y + this.vy;
     }
 
     display() {
-      
+      image(this. astronautImage, this.x, this.y, this.size, this.size);
       }
 }

@@ -16,11 +16,15 @@ function preload() {
 
 let astronaut;
 
-let asteroids = [];
-let numAsteroids = 3;
+let asteroids = {
+    asteroidArray: [],
+    numAsteroids: 3,
+};
 
-let planets = [];
-let numPlanets = 7;
+let planets = {
+    planetArray: [],
+    numPlanets: 7,
+}
 
 let planetWater = {
     x: 1100,
@@ -78,23 +82,17 @@ function setup() {
     textSize(30);
     textAlign(CENTER, CENTER);
 
-  astronaut = new Astronaut(300, 40);
-  planets = new Planet(100, 100);
-  asteroids = new Asteroid(200,300);
+    for (let i = 0; i < asteroids.numAsteroids; i++) {
+      let asteroid = new Asteroid();
+      asteroids.asteroidArray.push(asteroid);
+    }
 
-  for (let i = 0; i < numAsteroids; i++) {
-    let x = random(0,width);
-    let y = random(-400,-100);
-    let asteroids = new Asteroid(x,y);
-    asteroids.push(asteroids);
-  }
+    for (let i = 0; i < planets.numPlanets; i++) {
+      let planet = new Planet();
+      planets.planetArray.push(planet);
+    }
 
-  for (let i = 0; i < numPlanets; i++) {
-    let x = random(0,width);
-    let y = random(0,height);
-    let planets = new Planet(x,y);
-    planets.push(planets);
-  }
+  let astronaut = new Astronaut();
 
 }
 
@@ -105,13 +103,16 @@ function draw() {
 
   background(0);
 
-  runOut();
-  waterRefill();
-  foodRefill();
-  displayStars();
+  for (let i = 0; i < asteroids.asteroidArray.length; i++) {
+    let asteroid = asteroids.asteroidArray[i];
+    asteroid.display(); 
+  }
 
-  astronaut.display();
 
+  // runOut();
+  // waterRefill();
+  // foodRefill();
+  // displayStars();
 
   for (let i = 0; i < planets.length; i++) {
     let planets = planets[i];
@@ -139,80 +140,80 @@ function draw() {
       text(endingString, width / 2, height / 2)
     }
 }
-// if an astroid touches the astronaut
-function asteroidHit() {
-    let d = dist(astronaut.x, astronaut.y, asteroid.x, asteroid.y);
-      if(d < asteroid.size/2 + astronaut.size/2) {
-      state = `ending`;
-      }
-}
-// if one of the supply bars runs out
-function runOut() {
-  if (waterBar.l < 1) {
-    state = `ending`;
-  }
-  else if (foodBar.l < 1) {
-    state = `ending`;
-  }
-}
-// To start the game by clicking "Start Game"
-function mousePressed() {
-  if (state === `title`) {
-      state = `animation`;
-    }
-  }
-// Use loop to make starry backgroud
-function displayStars() {
-  stroke(255);
-    for (let i = 0; i < 100; i++) {
-    let x = random(0, width);
-    let y = random(0, height);
-    ellipse(x, y, 1.5, 1.5);
-    }
-}
-// Displaying food and water planets
-function displayPlanets() {
-// planet Water
-  fill(planetWater.fill.r, planetWater.fill.g, planetWater.fill.b);
-  ellipse(planetWater.x, planetWater.y, planetWater.size);
-  text(waterString, planetWater.x, planetWater.y);
+// // if an astroid touches the astronaut
+// function asteroidHit() {
+//     let d = dist(astronaut.x, astronaut.y, asteroid.x, asteroid.y);
+//       if(d < asteroid.size/2 + astronaut.size/2) {
+//       state = `ending`;
+//       }
+// }
+// // if one of the supply bars runs out
+// function runOut() {
+//   if (waterBar.l < 1) {
+//     state = `ending`;
+//   }
+//   else if (foodBar.l < 1) {
+//     state = `ending`;
+//   }
+// }
+// // To start the game by clicking "Start Game"
+// function mousePressed() {
+//   if (state === `title`) {
+//       state = `animation`;
+//     }
+//   }
+// // Use loop to make starry backgroud
+// function displayStars() {
+//   stroke(255);
+//     for (let i = 0; i < 100; i++) {
+//     let x = random(0, width);
+//     let y = random(0, height);
+//     ellipse(x, y, 1.5, 1.5);
+//     }
+// }
+// // Displaying food and water planets
+// function displayPlanets() {
+// // planet Water
+//   fill(planetWater.fill.r, planetWater.fill.g, planetWater.fill.b);
+//   ellipse(planetWater.x, planetWater.y, planetWater.size);
+//   text(waterString, planetWater.x, planetWater.y);
 
-// planet Food
-  fill(planetFood.fill.r, planetFood.fill.g, planetFood.fill.b);
-  ellipse(planetFood.x, planetFood.y, planetFood.size);
-  text(foodString, planetFood.x, planetFood.y);
-}
-// Display supply bars; Make them decrease whenever astronaut is not touching the planet
-function displayBars() {
-  rectMode(CORNER);
+// // planet Food
+//   fill(planetFood.fill.r, planetFood.fill.g, planetFood.fill.b);
+//   ellipse(planetFood.x, planetFood.y, planetFood.size);
+//   text(foodString, planetFood.x, planetFood.y);
+// }
+// // Display supply bars; Make them decrease whenever astronaut is not touching the planet
+// function displayBars() {
+//   rectMode(CORNER);
 
-  fill(255);
-  rect(20, 50, 200, 20);
-  rect(20, 100, 200, 20);
+//   fill(255);
+//   rect(20, 50, 200, 20);
+//   rect(20, 100, 200, 20);
   
-  fill(3, 150, 250);
-  rect(waterBar.x, waterBar.y, waterBar.l, waterBar.h);
-  waterBar.l = waterBar.l - waterBar.speed;
+//   fill(3, 150, 250);
+//   rect(waterBar.x, waterBar.y, waterBar.l, waterBar.h);
+//   waterBar.l = waterBar.l - waterBar.speed;
  
-  fill(18, 160, 8);
-  rect(foodBar.x, foodBar.y, foodBar.l, foodBar.h);
-  foodBar.l = foodBar.l - foodBar.speed;
+//   fill(18, 160, 8);
+//   rect(foodBar.x, foodBar.y, foodBar.l, foodBar.h);
+//   foodBar.l = foodBar.l - foodBar.speed;
  
-}
-// Water bar returns to full when astronaut touches water planet
-function waterRefill() {
-  let d = dist(astronaut.x, astronaut.y, planetWater.x, planetWater.y);
-  if(d < planetWater.size/2 + astronaut.size/2) {
-      waterBar.l = 200;
-  }
-}
-// Food bar returns to full when astronaut touches food planet
-function foodRefill() {
-let d = dist(astronaut.x, astronaut.y, planetFood.x, planetFood.y);
-  if(d < planetFood.size/2 + astronaut.size/2) {
-      foodBar.l = 200;
-  }
-}
+// }
+// // Water bar returns to full when astronaut touches water planet
+// function waterRefill() {
+//   let d = dist(astronaut.x, astronaut.y, planetWater.x, planetWater.y);
+//   if(d < planetWater.size/2 + astronaut.size/2) {
+//       waterBar.l = 200;
+//   }
+// }
+// // Food bar returns to full when astronaut touches food planet
+// function foodRefill() {
+// let d = dist(astronaut.x, astronaut.y, planetFood.x, planetFood.y);
+//   if(d < planetFood.size/2 + astronaut.size/2) {
+//       foodBar.l = 200;
+//   }
+// }
 
 
 

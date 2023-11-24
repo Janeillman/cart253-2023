@@ -128,6 +128,7 @@ function draw() {
     text(instructionString, width / 2, height/ 3);
     }
   else if (state === `animation`) { 
+    
       astronaut.move();
       asteroid.display();
       asteroid.move();
@@ -156,12 +157,12 @@ function draw() {
 //     state = `ending`;
 //   }
 // }
-// // To start the game by clicking "Start Game"
-// function mousePressed() {
-//   if (state === `title`) {
-//       state = `animation`;
-//     }
-//   }
+// To start the game by clicking "Start Game"
+function mousePressed() {
+  if (state === `title`) {
+      state = `animation`;
+    }
+  }
 // // Use loop to make starry backgroud
 // function displayStars() {
 //   stroke(255);

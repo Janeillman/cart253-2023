@@ -1,8 +1,8 @@
 class Asteroid {
     
     constructor(x,y) {
-        this.x = x;
-        this.y = y;
+        this.x = 100;
+        this.y = 100;
         this.vx = 0;
         this.vy = 0;
         this.speed = 12;

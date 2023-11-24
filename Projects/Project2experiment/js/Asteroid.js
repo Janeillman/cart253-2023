@@ -33,8 +33,6 @@ class Asteroid {
     display() {
         fill(this.fill.r, this.fill.g, this.fill.b);
         ellipse(this.x, this.y, this.size);
-        // this.x = this.x + this.spacing.x;
-        // this.y = this.y + this.spacing.y;
     }
 
 }

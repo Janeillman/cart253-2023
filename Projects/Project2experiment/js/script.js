@@ -12,6 +12,15 @@ function preload() {
 //     astronautArray: [],
 // }
 
+let astronaut = {
+  x: 600,
+  y: 50,
+  vx: 0,
+  vy: 0,
+  speed: 7,
+  size: 100
+}
+
 let asteroids = {
     asteroidArray: [],
     numAsteroids: 3,
@@ -50,6 +59,9 @@ function draw() {
 
     background(0);
 
+    displayAstronaut();
+    useArrowKeys();
+
     for (let i = 0; i < asteroids.asteroidArray.length; i++) {
         let asteroid = asteroids.asteroidArray[i];
         asteroid.display(); 
@@ -66,4 +78,32 @@ function draw() {
         let planet = planets.planetArray[i];
         planet.display();
       }
+}
+
+function useArrowKeys() {
+  if (keyIsDown(LEFT_ARROW)) {
+    astronaut.vx = -astronaut.speed;
+  }
+  else if (keyIsDown(RIGHT_ARROW)) {
+    astronaut.vx = astronaut.speed;
+  }
+  else {
+    astronaut.vx = 0;
+  }
+  if (keyIsDown(UP_ARROW)) {
+    astronaut.vy = -astronaut.speed;
+  }
+  else if (keyIsDown(DOWN_ARROW)) {
+    astronaut.vy = astronaut.speed;
+  }
+  else {
+    astronaut.vy = 0;
+  }
+
+  astronaut.x = astronaut.x + astronaut.vx;
+  astronaut.y = astronaut.y + astronaut.vy;
+}
+
+function displayAstronaut() {
+  image(astronautImage, astronaut.x, astronaut.y, astronaut.size, astronaut.size);
 }

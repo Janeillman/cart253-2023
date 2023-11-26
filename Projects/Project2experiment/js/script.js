@@ -54,6 +54,8 @@ let planetFood = {
   }
 }
 
+let state = `title`; 
+
 function setup() {
 
     createCanvas(windowWidth, windowHeight);
@@ -94,12 +96,17 @@ function draw() {
           let asteroid = asteroids.asteroidArray[i];
           asteroid.display(); 
           asteroid.move();
-         }
+          }
+        for (let i = 0; i < planets.planetArray.length; i++) {
+          let planet = planets.planetArray[i];
+          planet.display();
+          }
         useArrowKeys();
         displayPlanets();
         displayAstronaut();
       }
       else if (state === `ending`) {
+
       }     
 }
 
@@ -146,3 +153,9 @@ function displayPlanets() {
   ellipse(planetFood.x, planetFood.y, planetFood.size);
   // text(foodString, planetFood.x, planetFood.y);
 }
+
+function mousePressed() {
+  if (state === `title`) {
+      state = `animation`;
+    }
+  }

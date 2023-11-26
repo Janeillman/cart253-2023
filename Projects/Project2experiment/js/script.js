@@ -17,6 +17,11 @@ let astronaut = {
   size: 100
 }
 
+let stars = {
+  starArray: [],
+  numStars: 100,
+}
+
 let asteroids = {
   asteroidArray: [],
   numAsteroids: 3,
@@ -40,6 +45,11 @@ function setup() {
         let planet = new Planet();
         planets.planetArray.push(planet);
       }    
+
+    for (let i = 0; i < stars.numStars; i++) {
+        let star = new Star();
+        stars.starArray.push(star);
+      } 
 }
 
 function draw() {
@@ -47,6 +57,11 @@ function draw() {
     background(0);
 
     useArrowKeys();
+
+    for (let i = 0; i < stars.starArray.length; i++) {
+      let star = stars.starArray[i];
+      star.display();
+      }
 
     for (let i = 0; i < asteroids.asteroidArray.length; i++) {
         let asteroid = asteroids.asteroidArray[i];

@@ -9,7 +9,7 @@ class Star {
     display() {
         push();
         stroke(255);
-        ellipse(this.x,this.y,this.size);
+        ellipse(this.x,this.y,this.size, this.size);
         pop();
     }
 }

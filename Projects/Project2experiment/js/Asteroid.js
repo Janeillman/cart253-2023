@@ -1,8 +1,8 @@
 class Asteroid {
     
     constructor(x,y) {
-        this.x = 100;
-        this.y = 100;
+        this.x = -500;
+        this.y = random(0, height);
         this.vx = 0;
         this.vy = 0;
         this.speed = 12;
@@ -33,6 +33,13 @@ class Asteroid {
     display() {
         fill(this.fill.r, this.fill.g, this.fill.b);
         ellipse(this.x, this.y, this.size);
+    }
+
+    collision(astronaut) {
+        let d = dist(astronaut.x, astronaut.y, this.x, this.y);
+          if(d < this.size/2 + astronaut.size/2) {
+          state = `ending`;
+          }
     }
 
 }

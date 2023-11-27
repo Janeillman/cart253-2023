@@ -14,7 +14,7 @@ let astronaut = {
   vx: 0,
   vy: 0,
   speed: 7,
-  size: 100
+  size: 65
 }
 
 let stars = {
@@ -54,11 +54,22 @@ let planetFood = {
   }
 }
 
+let titleString = "Start Game";
+let instructionString = 
+`Collect food and water for the astronaut,
+      while avoiding the asteroids! 
+  You can move the astronaut with the arrow keys.`;
+let waterString = "WATER";
+let foodString = "FOOD";
+let endingString = "Game Over :(";
 let state = `title`; 
+// possible states are `title`, `animation`, `ending`
 
 function setup() {
 
     createCanvas(windowWidth, windowHeight);
+    textSize(30);
+    textAlign(CENTER, CENTER);
 
     for (let i = 0; i < asteroids.numAsteroids; i++) {
         let asteroid = new Asteroid();
@@ -78,7 +89,7 @@ function setup() {
 
 function draw() {
 
-    background(0);
+    background(4, 15, 51);
 
     for (let i = 0; i < stars.starArray.length; i++) {
       let star = stars.starArray[i];
@@ -90,12 +101,19 @@ function draw() {
         let planet = planets.planetArray[i];
         planet.display();
         }
+        fill(200, 50, 50);
+        rectMode(CENTER);
+        rect(width/2, height/2, 200, 50);
+      fill(255);
+      text(titleString, width / 2, height / 2);
+      text(instructionString, width / 2, height/ 3);
       }
       else if (state === `animation`) {
         for (let i = 0; i < asteroids.asteroidArray.length; i++) {
           let asteroid = asteroids.asteroidArray[i];
           asteroid.display(); 
           asteroid.move();
+          asteroid.collision(astronaut);
           }
         for (let i = 0; i < planets.planetArray.length; i++) {
           let planet = planets.planetArray[i];
@@ -104,9 +122,14 @@ function draw() {
         useArrowKeys();
         displayPlanets();
         displayAstronaut();
+
       }
       else if (state === `ending`) {
-
+        fill(250, 200, 200);
+      rectMode(CENTER);
+      rect(width/2, height/2, 200, 50);
+      fill(255, 0, 0);
+      text(endingString, width / 2, height / 2)
       }     
 }
 
@@ -146,12 +169,12 @@ function displayPlanets() {
 // planet Water
   fill(planetWater.fill.r, planetWater.fill.g, planetWater.fill.b);
   ellipse(planetWater.x, planetWater.y, planetWater.size);
-  // text(waterString, planetWater.x, planetWater.y);
+  text(waterString, planetWater.x, planetWater.y);
 
 // planet Food
   fill(planetFood.fill.r, planetFood.fill.g, planetFood.fill.b);
   ellipse(planetFood.x, planetFood.y, planetFood.size);
-  // text(foodString, planetFood.x, planetFood.y);
+  text(foodString, planetFood.x, planetFood.y);
 }
 
 function mousePressed() {

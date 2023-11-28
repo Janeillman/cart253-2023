@@ -54,6 +54,12 @@ let planetFood = {
   }
 }
 
+let gameLength = 10 * 1000;
+let levelUpDelay = 2 * 1000;
+let newLevel;
+
+let safeString = "safe!";
+let levelUpString = "LEvel Up!";
 let titleString = "Start Game";
 let instructionString = 
 `Collect food and water for the astronaut,
@@ -179,6 +185,24 @@ function displayPlanets() {
 
 function mousePressed() {
   if (state === `title`) {
+      setTimeout(gameOver, gameLength);
+
+    newLevel = setTimeout(levelUp, levelUpDelay);
+
       state = `animation`;
     }
   }
+
+function levelUp() {
+  fill(255);
+  text(levelUpString, width/2, height/2);
+}
+
+function gameOver() {
+  fill(255);
+  text(safeString, width/2, height/2);
+}
+
+
+
+

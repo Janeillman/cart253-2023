@@ -54,12 +54,21 @@ let planetFood = {
   }
 }
 
-let gameLength = 10 * 1000;
-let levelUpDelay = 2 * 1000;
-let newLevel;
+let waterBar = {
+  x: 20,
+  y: 50,
+  h: 20,
+  l: 200,
+  speed: 0.35
+}
+let foodBar = {
+  x: 20,
+  y:100,
+  h: 20,
+  l: 200,
+  speed: 0.15
+}
 
-let safeString = "safe!";
-let levelUpString = "LEvel Up!";
 let titleString = "Start Game";
 let instructionString = 
 `Collect food and water for the astronaut,
@@ -78,7 +87,7 @@ function setup() {
     textAlign(CENTER, CENTER);
 
     for (let i = 0; i < asteroids.numAsteroids; i++) {
-        let asteroid = new Asteroid();
+        let asteroid = new Asteroid(i);
         asteroids.asteroidArray.push(asteroid);
       }
     
@@ -101,6 +110,10 @@ function draw() {
       let star = stars.starArray[i];
       star.display();
       }
+    
+    waterRefill();
+    foodRefill();
+    runOut();
 
     if (state === `title`) {
       for (let i = 0; i < planets.planetArray.length; i++) {
@@ -127,8 +140,8 @@ function draw() {
           }
         useArrowKeys();
         displayPlanets();
+        displayBars();
         displayAstronaut();
-
       }
       else if (state === `ending`) {
         fill(250, 200, 200);
@@ -183,25 +196,55 @@ function displayPlanets() {
   text(foodString, planetFood.x, planetFood.y);
 }
 
+function runOut() {
+  if (waterBar.l < 1) {
+    state = `ending`;
+  }
+  else if (foodBar.l < 1) {
+    state = `ending`;
+  }
+}
+
 function mousePressed() {
   if (state === `title`) {
-      setTimeout(gameOver, gameLength);
-
-    newLevel = setTimeout(levelUp, levelUpDelay);
-
       state = `animation`;
     }
   }
 
-function levelUp() {
-  fill(255);
-  text(levelUpString, width/2, height/2);
-}
+  function displayBars() {
+    rectMode(CORNER);
+  
+    fill(255);
+    rect(20, 50, 200, 20);
+    rect(20, 100, 200, 20);
+    
+    fill(3, 150, 250);
+    rect(waterBar.x, waterBar.y, waterBar.l, waterBar.h);
+    waterBar.l = waterBar.l - waterBar.speed;
+   
+    fill(18, 160, 8);
+    rect(foodBar.x, foodBar.y, foodBar.l, foodBar.h);
+    foodBar.l = foodBar.l - foodBar.speed;
+   
+  }
 
-function gameOver() {
-  fill(255);
-  text(safeString, width/2, height/2);
-}
+  function waterRefill() {
+    let d = dist(astronaut.x, astronaut.y, planetWater.x, planetWater.y);
+    if(d < planetWater.size/2 + astronaut.size/2) {
+        waterBar.l = 200;
+    }
+  }
+  // Food bar returns to full when astronaut touches food planet
+  function foodRefill() {
+  let d = dist(astronaut.x, astronaut.y, planetFood.x, planetFood.y);
+    if(d < planetFood.size/2 + astronaut.size/2) {
+        foodBar.l = 200;
+    }
+  }
+
+
+
+
 
 
 

@@ -1,21 +1,18 @@
 class Asteroid {
     
-    constructor(x,y) {
-        this.x = -500;
-        this.y = random(0, height);
+    constructor(x, y, spacing) {
+        this.x = x;
+        this.y = y;
         this.vx = 0;
         this.vy = 0;
-        this.speed = 12;
+        this.speed = 8;
         this.size = 100;
         this.fill = {
             r: 211,
             g: 212,
             b: 219,
         };
-        this.spacing = {
-          x: 500,
-          y: 500
-        };
+        this.spacing = spacing;
     }
 
     move() {
@@ -26,7 +23,7 @@ class Asteroid {
           
         if (this.x > width) {
               this.x = 0;
-              this.y = random(0, height);
+              this.y = this.y + this.spacing.y;
           }
     }
 

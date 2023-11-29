@@ -27,8 +27,11 @@ class Asteroid {
     }
 
     display() {
+        push();
+        strokeWeight(5);
         fill(this.fill.r, this.fill.g, this.fill.b);
         ellipse(this.x, this.y, this.size);
+        pop();
     }
 
     collision(astronaut) {

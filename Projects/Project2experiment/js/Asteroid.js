@@ -23,7 +23,7 @@ class Asteroid {
           
         if (this.x > width) {
               this.x = 0;
-              this.y = this.y + this.spacing.y;
+              this.y = random(0, height);
           }
     }
 

@@ -183,11 +183,13 @@ function displayPlanets() {
 // planet Water
   fill(planetWater.fill.r, planetWater.fill.g, planetWater.fill.b);
   ellipse(planetWater.x, planetWater.y, planetWater.size);
+  fill(188, 216, 245);
   text(waterString, planetWater.x, planetWater.y);
 
 // planet Food
   fill(planetFood.fill.r, planetFood.fill.g, planetFood.fill.b);
   ellipse(planetFood.x, planetFood.y, planetFood.size);
+  fill(298, 240, 194);
   text(foodString, planetFood.x, planetFood.y);
 }
 

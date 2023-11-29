@@ -3,9 +3,11 @@
 "use strict";
 
 let astronautImage;
+let spaceMusic;
 
 function preload() {
     astronautImage = loadImage("assets/images/astronaut2.webp");
+    spaceMusic = loadSound(`assets/sounds/spacemusic.mp3`);
 }
 
 let astronaut = {
@@ -76,7 +78,7 @@ let instructionString =
   You can move the astronaut with the arrow keys.`;
 let waterString = "WATER";
 let foodString = "FOOD";
-let endingString = "Game Over :(";
+let endingString = "Game Over";
 let state = `title`; 
 // possible states are `title`, `animation`, `ending`
 
@@ -85,6 +87,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     textSize(30);
     textAlign(CENTER, CENTER);
+    userStartAudio();
 
     for (let i = 0; i < asteroids.numAsteroids; i++) {
         let asteroid = new Asteroid();
@@ -123,27 +126,24 @@ function draw() {
         displayStartScreen();
       }
       else if (state === `animation`) {
+        useArrowKeys();
+        for (let i = 0; i < planets.planetArray.length; i++) {
+          let planet = planets.planetArray[i];
+          planet.display();
+          }
+        displayPlanets();
         for (let i = 0; i < asteroids.asteroidArray.length; i++) {
           let asteroid = asteroids.asteroidArray[i];
           asteroid.display(); 
           asteroid.move();
           asteroid.collision(astronaut);
           }
-        for (let i = 0; i < planets.planetArray.length; i++) {
-          let planet = planets.planetArray[i];
-          planet.display();
-          }
-        useArrowKeys();
-        displayPlanets();
         displayBars();
         displayAstronaut();
       }
       else if (state === `ending`) {
-        fill(250, 200, 200);
-      rectMode(CENTER);
-      rect(width/2, height/2, 200, 50);
-      fill(255, 0, 0);
-      text(endingString, width / 2, height / 2)
+        displayEndingScreen();
+        spaceMusic.stop();
       }     
 }
 
@@ -203,6 +203,7 @@ function runOut() {
 function mousePressed() {
   if (state === `title`) {
       state = `animation`;
+      spaceMusic.play();
     }
   }
 
@@ -258,7 +259,17 @@ function mousePressed() {
     fill(255);
     text(titleString, width / 2, height / 2);
     pop();
-   
+  }
+
+  function displayEndingScreen(){
+    push();
+    fill(0);
+    rectMode(CENTER);
+    rect(width/2, height/2, 500, 300);
+    textSize(50);
+    fill(255, 0, 0);
+    text(endingString, width / 2, height / 2)
+    pop();
   }
 
 

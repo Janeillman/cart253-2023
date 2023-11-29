@@ -14,7 +14,7 @@ let astronaut = {
   vx: 0,
   vy: 0,
   speed: 7,
-  size: 65
+  size: 60
 }
 
 let stars = {
@@ -120,12 +120,7 @@ function draw() {
         let planet = planets.planetArray[i];
         planet.display();
         }
-        fill(200, 50, 50);
-        rectMode(CENTER);
-        rect(width/2, height/2, 200, 50);
-      fill(255);
-      text(titleString, width / 2, height / 2);
-      text(instructionString, width / 2, height/ 3);
+        displayStartScreen();
       }
       else if (state === `animation`) {
         for (let i = 0; i < asteroids.asteroidArray.length; i++) {
@@ -212,6 +207,8 @@ function mousePressed() {
   }
 
   function displayBars() {
+    push();
+    noStroke();
     rectMode(CORNER);
   
     fill(255);
@@ -225,7 +222,7 @@ function mousePressed() {
     fill(18, 160, 8);
     rect(foodBar.x, foodBar.y, foodBar.l, foodBar.h);
     foodBar.l = foodBar.l - foodBar.speed;
-   
+    pop();
   }
 
   function waterRefill() {
@@ -242,6 +239,27 @@ function mousePressed() {
     }
   }
 
+  function displayStartScreen(){
+    rectMode(CENTER);
+    push();
+    noStroke();
+    fill(4, 15, 51);
+    rect(width/2, height/4, 500, 150);
+    fill(181, 227, 247);
+    textSize(20);
+    text(instructionString, width / 2, height/ 4);
+    pop();
+    push();
+    strokeWeight(2);
+    fill(200, 50, 50);
+    rect(width/2, height/2, 200, 50);
+    pop();
+    push();
+    fill(255);
+    text(titleString, width / 2, height / 2);
+    pop();
+   
+  }
 
 
 

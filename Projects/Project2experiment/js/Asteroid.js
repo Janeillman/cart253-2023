@@ -6,15 +6,11 @@ class Asteroid {
         this.vx = 0;
         this.vy = 0;
         this.speed = 8;
-        this.size = 100;
+        this.size = 75;
         this.fill = {
             r: 211,
             g: 212,
             b: 219,
-        };
-        this.spacing = {
-            x: 500,
-            y: 500
         };
     }
 

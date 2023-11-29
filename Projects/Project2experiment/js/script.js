@@ -87,10 +87,7 @@ function setup() {
     textAlign(CENTER, CENTER);
 
     for (let i = 0; i < asteroids.numAsteroids; i++) {
-        let x = -500;
-        let y = random(0, height);
-        let spacing = 500;
-        let asteroid = new Asteroid(x, y, spacing);
+        let asteroid = new Asteroid();
         asteroids.asteroidArray.push(asteroid);
       }
     

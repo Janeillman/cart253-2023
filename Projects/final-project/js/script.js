@@ -82,6 +82,7 @@ let endingString = "Game Over";
 let state = `title`; 
 // possible states are `title`, `animation`, `ending`
 
+// set text settings, background, arrays
 function setup() {
 
     createCanvas(windowWidth, windowHeight);

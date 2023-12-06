@@ -1,3 +1,7 @@
+Artist's Statement
+
+    My vision for this project was to create a fun game that a user may want to play time after time. I love the idea of space and find it beautiful, so I wanted to create a background that makes the game interesting and meaningful. By allowing the user to interact with the game by moving the astronaut around, the user is fighting for survival out in space, trying to get food and water, as well as avoid asteroids. I hope that someone who plays this game may play it over an over, as it becomes more fun the better you get at playing it. Artistically I am very happy with the visual presentation of my project; the colours, the shapes and ascetics. It was a challenge to get the effects I visualized through code, as this class is my only coding experience, but after much trial and error, I was able to produce something that I feel looks fun and intruiguing. I am pleased with the degree to which my imagination was displayed throught this coding project.
+    
 Attributions
 
     Since this project is an improvement on a previous project I made, some of the code was reused. 

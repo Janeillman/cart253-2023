@@ -2,7 +2,17 @@
 Space Game
 by Jane Illman
 Description: 
-
+  This is a simple, fun, space themed game where the user interacts with the
+  program by moving the astroanut arounf the screen with the arrow keys.
+  The Goal of the game is to stay alive for as long as possible.
+  The game ends if the astronaut gets hit by one of the asteroids, which come in
+  randomly from the left of the screen. 
+  The game will also end if the astronaut runs out of food or water. Their supply
+  is shown in the top left of the screen and you can get refills by hovering over
+  the proper planet.
+  For ascetic effects, there are random planets and stars in the background, but they are just
+  for looks and do not effect the astronaut.
+  Have fun!
 ***********************/
 
 "use strict";
@@ -150,7 +160,7 @@ function draw() {
         spaceMusic.stop();
       }     
 }
-
+// Move the astroanut with the arrow keys Left, Right, Up and Down
 function useArrowKeys() {
   if (keyIsDown(LEFT_ARROW)) {
     astronaut.vx = -astronaut.speed;
@@ -170,10 +180,10 @@ function useArrowKeys() {
   else {
     astronaut.vy = 0;
   }
-
+  // How the astronaut moves
   astronaut.x = astronaut.x + astronaut.vx;
   astronaut.y = astronaut.y + astronaut.vy;
-
+  // Constrain astronaut within canvas
   astronaut.x = constrain(astronaut.x, 0, width - astronaut.size);
   astronaut.y = constrain(astronaut.y, 0, height - astronaut.size);
 }
@@ -270,7 +280,7 @@ function displayStartScreen() {
   pop();
 }
 
-function displayEndingScreen(){
+function displayEndingScreen() {
   // Background square
   push();
   fill(0);

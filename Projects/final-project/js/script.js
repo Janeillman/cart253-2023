@@ -110,7 +110,7 @@ function setup() {
         stars.starArray.push(star);
     } 
 }
-
+// Going from title, animation to ending states; background and calling other functions
 function draw() {
     background(4, 15, 51);
     for (let i = 0; i < stars.starArray.length; i++) {
@@ -244,38 +244,44 @@ function foodRefill() {
     foodBar.l = 200;
   }
 }
-
+// Title screen display
 function displayStartScreen() {
   rectMode(CENTER);
+  // Background for instructions
   push();
   noStroke();
   fill(4, 15, 51);
   rect(width/2, height/4, 500, 150);
+  // Instruction writting
   fill(181, 227, 247);
   textSize(20);
   text(instructionString, width / 2, height/ 4);
   pop();
+  // start game button
   push();
   strokeWeight(2);
   fill(200, 50, 50);
   rect(width/2, height/2, 200, 50);
   pop();
+  // Start game writting
   push();
   fill(255);
   text(titleString, width / 2, height / 2);
   pop();
 }
 
-  function displayEndingScreen(){
-    push();
-    fill(0);
-    rectMode(CENTER);
-    rect(width/2, height/2, 500, 300);
-    textSize(50);
-    fill(255, 0, 0);
-    text(endingString, width / 2, height / 2)
-    pop();
-  }
+function displayEndingScreen(){
+  // Background square
+  push();
+  fill(0);
+  rectMode(CENTER);
+  rect(width/2, height/2, 500, 300);
+  // Game over writting
+  textSize(50);
+  fill(255, 0, 0);
+  text(endingString, width / 2, height / 2)
+  pop();
+}
 
 
 

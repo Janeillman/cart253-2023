@@ -19,7 +19,7 @@ Description:
 
 let astronautImage;
 let spaceMusic;
-
+// load image of astronaut and music for game
 function preload() {
     astronautImage = loadImage("assets/images/astronaut2.webp");
     spaceMusic = loadSound(`assets/sounds/spacemusic.mp3`);

@@ -1,3 +1,4 @@
+// Creading a class which stores the stars for the starry background
 class Star {
 
     constructor(x, y) {
@@ -5,7 +6,7 @@ class Star {
         this.y = random(0, windowHeight);
         this.size = 1.5;
     }
-
+// how stars are displayed
     display() {
         push();
         stroke(255);

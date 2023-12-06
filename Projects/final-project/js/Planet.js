@@ -1,3 +1,4 @@
+// class to store properties of background planets
 class Planet {
 
     constructor(x,y) {
@@ -10,7 +11,7 @@ class Planet {
             b: random(175,255)
           };
     }
-
+    // Display planets at random spots and random colours
     display() {
         push();
         noStroke();
